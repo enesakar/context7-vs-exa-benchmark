@@ -1,0 +1,1138 @@
+[
+ {
+  "id": "vercel-ai-sdk",
+  "library": "Vercel AI SDK (ai)",
+  "ecosystem": "js",
+  "version": "7.0.0",
+  "release_date": "2026-06-25",
+  "change": "signature",
+  "old_api": "result.toUIMessageStreamResponse()",
+  "new_api": "createUIMessageStreamResponse({ stream: toUIMessageStream({ stream: result.stream }) })",
+  "old_patterns": [
+   "\\.toUIMessageStreamResponse\\s*\\(",
+   "\\.toDataStreamResponse\\s*\\(",
+   "\\.toAIStreamResponse\\s*\\(",
+   "\\bStreamingTextResponse\\b"
+  ],
+  "new_patterns": [
+   "createUIMessageStreamResponse\\s*\\(",
+   "(?<![.\\w])toUIMessageStream\\s*\\(\\s*\\{\\s*stream"
+  ],
+  "old_status": "deprecated",
+  "question": "In a Next.js App Router route handler, how do I return a streamText result so the useChat hook on the client can consume it with the Vercel AI SDK?",
+  "question_with_version": "In a Next.js App Router route handler, how do I return a streamText result so useChat can consume it with AI SDK 7?",
+  "source_url": "https://ai-sdk.dev/docs/migration-guides/migration-guide-7-0",
+  "notes": "Very common in tutorials. createUIMessageStreamResponse also existed in v5/v6 (with createUIMessageStream). Old patterns also cover the v3/v4 names (toDataStreamResponse, toAIStreamResponse, StreamingTextResponse).",
+  "hint_library": "Vercel AI SDK",
+  "hint_version": "7.0.0"
+ },
+ {
+  "id": "vercel-ai-sdk-2",
+  "library": "Vercel AI SDK (ai)",
+  "ecosystem": "js",
+  "version": "7.0.0",
+  "release_date": "2026-06-25",
+  "change": "rename",
+  "old_api": "onFinish (streamText/generateText option)",
+  "new_api": "onEnd",
+  "old_patterns": [
+   "\\bonFinish\\s*[:(]"
+  ],
+  "new_patterns": [
+   "\\bonEnd\\s*[:(]"
+  ],
+  "old_status": "deprecated",
+  "question": "With the Vercel AI SDK, which streamText callback runs once after the whole response (all steps) is done so I can save the final text and token usage to my database? Show the code.",
+  "question_with_version": "With AI SDK 7, which streamText callback runs once after the whole response is done so I can save the final text and usage to my database?",
+  "source_url": "https://ai-sdk.dev/docs/migration-guides/migration-guide-7-0",
+  "notes": "useChat still has a valid onFinish; keep server-side.",
+  "hint_library": "Vercel AI SDK",
+  "hint_version": "7.0.0"
+ },
+ {
+  "id": "vercel-ai-sdk-3",
+  "library": "Vercel AI SDK (ai)",
+  "ecosystem": "js",
+  "version": "7.0.0",
+  "release_date": "2026-06-25",
+  "change": "rename",
+  "old_api": "result.fullStream",
+  "new_api": "result.stream",
+  "old_patterns": [
+   "\\.fullStream\\b"
+  ],
+  "new_patterns": [
+   "\\bof\\s+(?:await\\s+)?\\w+\\.stream\\b(?!\\w)",
+   "\\bresult\\.stream\\b(?!\\w)"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I iterate over every event from a Vercel AI SDK streamText call, including text deltas, tool calls and tool results, in a for-await loop?",
+  "question_with_version": "How do I iterate over every event (text deltas, tool calls, tool results) from streamText in AI SDK 7?",
+  "source_url": "https://ai-sdk.dev/docs/migration-guides/migration-guide-7-0",
+  "notes": "New token is generic; patterns rely on context.",
+  "hint_library": "Vercel AI SDK",
+  "hint_version": "7.0.0"
+ },
+ {
+  "id": "mcp-python-sdk",
+  "library": "MCP Python SDK (mcp)",
+  "ecosystem": "python",
+  "version": "2.0.0",
+  "release_date": "2026-07-28",
+  "change": "rename",
+  "old_api": "from mcp.server.fastmcp import FastMCP",
+  "new_api": "from mcp.server.mcpserver import MCPServer",
+  "old_patterns": [
+   "mcp\\.server\\.fastmcp"
+  ],
+  "new_patterns": [
+   "mcp\\.server\\.mcpserver",
+   "\\bMCPServer\\("
+  ],
+  "old_status": "removed",
+  "question": "How do I create a simple MCP server with one tool using the official MCP Python SDK?",
+  "question_with_version": "How do I create a simple MCP server with one tool using the official MCP Python SDK v2?",
+  "source_url": "https://py.sdk.modelcontextprotocol.io/migration/#fastmcp-renamed-to-mcpserver",
+  "notes": "Standalone `fastmcp` package still exports FastMCP; old pattern matches only the mcp.server.fastmcp import path.",
+  "hint_library": "MCP Python SDK",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "mcp-python-sdk-2",
+  "library": "MCP Python SDK (mcp)",
+  "ecosystem": "python",
+  "version": "2.0.0",
+  "release_date": "2026-07-28",
+  "change": "removal",
+  "old_api": "streamablehttp_client",
+  "new_api": "streamable_http_client",
+  "old_patterns": [
+   "\\bstreamablehttp_client\\b"
+  ],
+  "new_patterns": [
+   "\\bstreamable_http_client\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I connect to a remote MCP server over Streamable HTTP with the official MCP Python SDK client and list its tools?",
+  "question_with_version": "How do I connect to a remote MCP server over Streamable HTTP with the MCP Python SDK v2 client and list its tools?",
+  "source_url": "https://py.sdk.modelcontextprotocol.io/migration/#streamablehttp_client-removed",
+  "notes": "Names differ by one underscore; regexes are exact.",
+  "hint_library": "MCP Python SDK",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "mcp-typescript-sdk",
+  "library": "MCP TypeScript SDK",
+  "ecosystem": "js",
+  "version": "2.0.0",
+  "release_date": "2026-07-27",
+  "change": "removal",
+  "old_api": "server.tool(...)",
+  "new_api": "server.registerTool(...)",
+  "old_patterns": [
+   "\\.tool\\(\\s*['\"`]"
+  ],
+  "new_patterns": [
+   "\\.registerTool\\("
+  ],
+  "old_status": "removed",
+  "question": "How do I add a tool with an input schema to an MCP server using the TypeScript SDK?",
+  "question_with_version": "How do I add a tool with an input schema to an MCP server using the MCP TypeScript SDK v2?",
+  "source_url": "https://ts.sdk.modelcontextprotocol.io/v2/migration/upgrade-to-v2",
+  "notes": "Removed in v2 packages; deprecated in @modelcontextprotocol/sdk 1.32 (still npm latest), registerTool is current in both.",
+  "hint_library": "MCP TypeScript SDK",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "mcp-typescript-sdk-2",
+  "library": "MCP TypeScript SDK",
+  "ecosystem": "js",
+  "version": "2.0.0",
+  "release_date": "2026-07-27",
+  "change": "removal",
+  "old_api": "SSEServerTransport",
+  "new_api": "NodeStreamableHTTPServerTransport / StreamableHTTPServerTransport",
+  "old_patterns": [
+   "\\bSSEServerTransport\\b"
+  ],
+  "new_patterns": [
+   "StreamableHTTPServerTransport\\b",
+   "\\bcreateMcpHandler\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I serve my TypeScript MCP server over HTTP so remote clients can connect to it?",
+  "question_with_version": "How do I serve my MCP server over HTTP with the MCP TypeScript SDK v2 so remote clients can connect?",
+  "source_url": "https://ts.sdk.modelcontextprotocol.io/v2/migration/upgrade-to-v2",
+  "notes": "Removed in v2; deprecated in sdk 1.32. New patterns also cover createMcpHandler, which the official v2 HTTP page uses (found in the docs check).",
+  "hint_library": "MCP TypeScript SDK",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "pydantic-ai",
+  "library": "Pydantic AI",
+  "ecosystem": "python",
+  "version": "2.0.0",
+  "release_date": "2026-06-23",
+  "change": "removal",
+  "old_api": "MCPServerStdio / MCPServerStreamableHTTP / MCPServerSSE",
+  "new_api": "MCPToolset",
+  "old_patterns": [
+   "\\bMCPServer(?:Stdio|StreamableHTTP|SSE|HTTP)\\b"
+  ],
+  "new_patterns": [
+   "\\bMCPToolset\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I connect a Pydantic AI agent to a local MCP server that runs as a subprocess over stdio?",
+  "question_with_version": "How do I connect a Pydantic AI v2 agent to a local MCP server that runs as a subprocess over stdio?",
+  "source_url": "https://ai.pydantic.dev/migration/",
+  "notes": "Deprecated in 1.97.0 (2026-05-15), removed in 2.0.0.",
+  "hint_library": "Pydantic AI",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "pydantic-ai-2",
+  "library": "Pydantic AI",
+  "ecosystem": "python",
+  "version": "2.0.0",
+  "release_date": "2026-06-23",
+  "change": "removal",
+  "old_api": "OpenAIModel",
+  "new_api": "OpenAIChatModel",
+  "old_patterns": [
+   "\\bOpenAIModel\\b"
+  ],
+  "new_patterns": [
+   "\\bOpenAIChatModel\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I make a Pydantic AI agent use an OpenAI-compatible model served at a custom base URL?",
+  "question_with_version": "How do I make a Pydantic AI v2 agent use an OpenAI-compatible model served at a custom base URL?",
+  "source_url": "https://ai.pydantic.dev/migration/",
+  "notes": "Custom base URL forces the explicit model class.",
+  "hint_library": "Pydantic AI",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "anthropic-python-sdk",
+  "library": "Anthropic Python SDK (anthropic)",
+  "ecosystem": "python",
+  "version": "1.0.0",
+  "release_date": "2026-08-20",
+  "change": "removal",
+  "old_api": "output_format={...} on messages.create (structured-outputs beta header)",
+  "new_api": "output_config={'format': {...}}",
+  "old_patterns": [
+   "\\boutput_format\\s*=\\s*\\{",
+   "[\"']output_format[\"']\\s*:",
+   "structured-outputs-2025-11-13"
+  ],
+  "new_patterns": [
+   "\\boutput_config\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I make Claude return JSON that matches a JSON schema using client.messages.create in the Anthropic Python SDK?",
+  "question_with_version": "How do I make Claude return JSON that matches a JSON schema using client.messages.create in the Anthropic Python SDK v1?",
+  "source_url": "https://github.com/anthropics/anthropic-sdk-python/blob/main/MIGRATION.md",
+  "notes": "parse()/stream() helpers still accept output_format=PydanticModel, so the old patterns only match the dict form and the old beta header.",
+  "hint_library": "Anthropic Python SDK",
+  "hint_version": "1.0.0"
+ },
+ {
+  "id": "openai-node-sdk",
+  "library": "OpenAI Node SDK (openai)",
+  "ecosystem": "js",
+  "version": "6.17.0 (deprecated); API sunset 2026-08-26",
+  "release_date": "2026-01-28",
+  "change": "removal",
+  "old_api": "openai.beta.threads / beta.assistants (Assistants API)",
+  "new_api": "openai.conversations.create / openai.responses.create",
+  "old_patterns": [
+   "\\bbeta\\.threads\\b",
+   "\\bbeta\\.assistants\\b"
+  ],
+  "new_patterns": [
+   "\\bconversations\\.create\\b",
+   "\\bresponses\\.create\\b"
+  ],
+  "old_status": "removed",
+  "question": "With the OpenAI Node SDK, how do I keep a multi-turn conversation stored on OpenAI's side so I don't resend the whole history every time?",
+  "question_with_version": "With the OpenAI Node SDK v7, how do I keep a multi-turn conversation stored on OpenAI's side so I don't resend the history?",
+  "source_url": "https://developers.openai.com/api/docs/assistants/migration",
+  "notes": "Assistants API sunset on 2026-08-26 and is no longer available; SDK methods remain but are deprecated.",
+  "hint_library": "OpenAI Node SDK",
+  "hint_version": "6.17.0"
+ },
+ {
+  "id": "google-gen-ai-python-sdk",
+  "library": "Google Gen AI Python SDK (google-genai)",
+  "ecosystem": "python",
+  "version": "2.14.0",
+  "release_date": "2026-07-22",
+  "change": "rename",
+  "old_api": "client.models.generate_images (Imagen)",
+  "new_api": "client.models.generate_content with an image model",
+  "old_patterns": [
+   "\\bgenerate_images\\b",
+   "\\bgoogle\\.generativeai\\b",
+   "\\bImageGenerationModel\\b"
+  ],
+  "new_patterns": [
+   "\\bgenerate_content\\b",
+   "\\binteractions\\.create\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I generate an image from a text prompt with the Google Gen AI Python SDK and save it to a file?",
+  "question_with_version": "How do I generate an image from a text prompt with the Google Gen AI Python SDK v2 and save it to a file?",
+  "source_url": "https://ai.google.dev/gemini-api/docs/deprecations",
+  "notes": "SDK message: generate_images is deprecated, use generate_content with image models. imagen-4.0-generate-001 shut down 2026-08-17. Old patterns also cover the deprecated google-generativeai SDK and the Vertex ImageGenerationModel. New patterns also cover client.interactions.create, which the official Gemini image page uses (found in the docs check).",
+  "hint_library": "Google Gen AI Python SDK",
+  "hint_version": "2.14.0"
+ },
+ {
+  "id": "langchain",
+  "library": "LangChain (Python)",
+  "ecosystem": "python",
+  "version": "1.4.0",
+  "release_date": "2026-09-03",
+  "change": "rename",
+  "old_api": "MultiServerMCPClient from langchain_mcp_adapters",
+  "new_api": "MCPAdapter from langchain.mcp",
+  "old_patterns": [
+   "\\bMultiServerMCPClient\\b",
+   "\\blangchain_mcp_adapters\\b"
+  ],
+  "new_patterns": [
+   "\\bMCPAdapter\\b",
+   "\\blangchain\\.mcp\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I load the tools from an MCP server into a LangChain agent in Python?",
+  "question_with_version": "How do I load the tools from an MCP server into a LangChain v1.4 agent in Python?",
+  "source_url": "https://docs.langchain.com/oss/python/migrate/langchain-mcp-adapters",
+  "notes": "langchain-mcp-adapters repo archived; new namespace is beta.",
+  "hint_library": "LangChain",
+  "hint_version": "1.4.0"
+ },
+ {
+  "id": "langchain-js",
+  "library": "LangChain.js (@langchain/mcp-adapters)",
+  "ecosystem": "js",
+  "version": "2.0.0",
+  "release_date": "2026-10-01",
+  "change": "rename",
+  "old_api": "MultiServerMCPClient / getTools()",
+  "new_api": "MCPAdapter / listTools()",
+  "old_patterns": [
+   "\\bMultiServerMCPClient\\b"
+  ],
+  "new_patterns": [
+   "\\bMCPAdapter\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I use the tools from an MCP server in a LangChain.js agent?",
+  "question_with_version": "How do I use the tools from an MCP server in a LangChain.js agent with @langchain/mcp-adapters v2?",
+  "source_url": "https://docs.langchain.com/oss/javascript/migrate/langchain-mcp-adapters",
+  "notes": "Released 6 days before the run; deprecated alias still exported. listTools omitted from patterns because the raw MCP client also has listTools().",
+  "hint_library": "LangChain.js",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "mastra",
+  "library": "Mastra (@mastra/core)",
+  "ecosystem": "js",
+  "version": "1.0.0",
+  "release_date": "2026-01-20",
+  "change": "rename",
+  "old_api": "RuntimeContext / runtimeContext (@mastra/core/runtime-context)",
+  "new_api": "RequestContext / requestContext (@mastra/core/request-context)",
+  "old_patterns": [
+   "\\bRuntimeContext\\b",
+   "\\bruntimeContext\\b",
+   "core/runtime-context"
+  ],
+  "new_patterns": [
+   "\\bRequestContext\\b",
+   "\\brequestContext\\b",
+   "core/request-context"
+  ],
+  "old_status": "removed",
+  "question": "How do I pass per-request data like the current user's ID into a Mastra agent so its tools can read it?",
+  "question_with_version": "How do I pass per-request data like the current user's ID into a Mastra v1 agent so its tools can read it?",
+  "source_url": "https://mastra.ai/reference/migrations/upgrade-to-v1/agent",
+  "notes": "Removed in 1.75.0 (latest).",
+  "hint_library": "Mastra",
+  "hint_version": "1.0.0"
+ },
+ {
+  "id": "mastra-2",
+  "library": "Mastra (@mastra/core)",
+  "ecosystem": "js",
+  "version": "1.0.0",
+  "release_date": "2026-01-20",
+  "change": "rename",
+  "old_api": "mastra.getAgents()",
+  "new_api": "mastra.listAgents()",
+  "old_patterns": [
+   "\\.getAgents\\s*\\("
+  ],
+  "new_patterns": [
+   "\\.listAgents\\s*\\("
+  ],
+  "old_status": "removed",
+  "question": "How do I get all the agents registered on my Mastra instance?",
+  "question_with_version": "How do I get all the agents registered on my Mastra v1 instance?",
+  "source_url": "https://mastra.ai/reference/migrations/upgrade-to-v1/agent",
+  "notes": "",
+  "hint_library": "Mastra",
+  "hint_version": "1.0.0"
+ },
+ {
+  "id": "django",
+  "library": "Django",
+  "ecosystem": "python",
+  "version": "6.1",
+  "release_date": "2026-08-05",
+  "change": "rename",
+  "old_api": "EMAIL_BACKEND / EMAIL_HOST / EMAIL_PORT / EMAIL_USE_TLS / EMAIL_HOST_USER / EMAIL_HOST_PASSWORD settings",
+  "new_api": "MAILERS = {\"default\": {\"BACKEND\": ..., \"OPTIONS\": {...}}}",
+  "old_patterns": [
+   "\\bEMAIL_(?:HOST|BACKEND|PORT|USE_TLS|USE_SSL|HOST_USER|HOST_PASSWORD)\\b"
+  ],
+  "new_patterns": [
+   "\\bMAILERS\\s*="
+  ],
+  "old_status": "deprecated",
+  "question": "How do I configure Django to send email through an SMTP server like Gmail (host, port, TLS, username and password)?",
+  "question_with_version": "In Django 6.1, how do I configure email sending through an SMTP server like Gmail (host, port, TLS, username and password)?",
+  "source_url": "https://docs.djangoproject.com/en/6.1/releases/6.1/",
+  "notes": "Deprecated until Django 7.0.",
+  "hint_library": "Django",
+  "hint_version": "6.1"
+ },
+ {
+  "id": "polars",
+  "library": "Polars",
+  "ecosystem": "python",
+  "version": "2.0.0",
+  "release_date": "2026-10-06",
+  "change": "removal",
+  "old_api": "df.melt(id_vars=..., value_vars=...)",
+  "new_api": "df.unpivot(index=..., on=...)",
+  "old_patterns": [
+   "\\.melt\\("
+  ],
+  "new_patterns": [
+   "\\.unpivot\\("
+  ],
+  "old_status": "removed",
+  "question": "In Polars, how do I reshape a wide DataFrame into long format, keeping an id column and turning the other columns into variable/value rows?",
+  "question_with_version": "In Polars 2, how do I reshape a wide DataFrame into long format, keeping an id column and turning the other columns into variable/value rows?",
+  "source_url": "https://docs.pola.rs/releases/upgrade/2/",
+  "notes": "Deprecated in 1.0, removed in 2.0.0 (one day before the run).",
+  "hint_library": "Polars",
+  "hint_version": "2.0.0"
+ },
+ {
+  "id": "scikit-learn",
+  "library": "scikit-learn",
+  "ecosystem": "python",
+  "version": "1.9.0",
+  "release_date": "2026-06-02",
+  "change": "removal",
+  "old_api": "SVC(probability=True).predict_proba(X)",
+  "new_api": "CalibratedClassifierCV(SVC(), ensemble=False).predict_proba(X)",
+  "old_patterns": [
+   "probability\\s*=\\s*True"
+  ],
+  "new_patterns": [
+   "CalibratedClassifierCV\\s*\\("
+  ],
+  "old_status": "deprecated",
+  "question": "How do I get class probability estimates (predict_proba) from a scikit-learn SVC classifier?",
+  "question_with_version": "In scikit-learn 1.9, how do I get class probability estimates (predict_proba) from an SVC classifier?",
+  "source_url": "https://scikit-learn.org/stable/whats_new/v1.9.html",
+  "notes": "Removal planned for 1.11.",
+  "hint_library": "scikit-learn",
+  "hint_version": "1.9.0"
+ },
+ {
+  "id": "pytorch",
+  "library": "PyTorch",
+  "ecosystem": "python",
+  "version": "2.14.0",
+  "release_date": "2026-09-02",
+  "change": "removal",
+  "old_api": "torch.profiler.profile(use_cuda=True)",
+  "new_api": "torch.profiler.profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA])",
+  "old_patterns": [
+   "profile\\((?:[^()]|\\([^()]*\\))*\\buse_cuda\\s*="
+  ],
+  "new_patterns": [
+   "ProfilerActivity\\.CUDA",
+   "use_device\\s*=\\s*[\"']cuda[\"']"
+  ],
+  "old_status": "removed",
+  "question": "How do I use the PyTorch profiler to measure the CUDA (GPU) time of each operator in my model's forward pass?",
+  "question_with_version": "In PyTorch 2.14, how do I use the profiler to measure the CUDA (GPU) time of each operator in my model's forward pass?",
+  "source_url": "https://github.com/pytorch/pytorch/releases/tag/v2.14.0",
+  "notes": "Passing use_cuda now raises TypeError.",
+  "hint_library": "PyTorch",
+  "hint_version": "2.14.0"
+ },
+ {
+  "id": "starlette",
+  "library": "Starlette (FastAPI templating)",
+  "ecosystem": "python",
+  "version": "1.0.0",
+  "release_date": "2026-03-22",
+  "change": "signature",
+  "old_api": "templates.TemplateResponse(\"index.html\", {\"request\": request, ...})",
+  "new_api": "templates.TemplateResponse(request, \"index.html\", {...})",
+  "old_patterns": [
+   "TemplateResponse\\(\\s*(?:name\\s*=\\s*)?[\"'][^\"']+[\"']\\s*,",
+   "[\"']request[\"']\\s*:\\s*request\\b"
+  ],
+  "new_patterns": [
+   "TemplateResponse\\(\\s*request\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I render a Jinja2 HTML template and pass variables to it from a FastAPI route?",
+  "question_with_version": "With FastAPI on Starlette 1.x, how do I render a Jinja2 HTML template and pass variables to it from a route?",
+  "source_url": "https://github.com/Kludex/starlette/blob/main/docs/release-notes.md",
+  "notes": "Signature change; detection by argument shape.",
+  "hint_library": "Starlette",
+  "hint_version": "1.0.0"
+ },
+ {
+  "id": "hugging-face-transformers",
+  "library": "Hugging Face transformers",
+  "ecosystem": "python",
+  "version": "5.0.0",
+  "release_date": "2026-01-26",
+  "change": "removal",
+  "old_api": "AutoModelForVision2Seq",
+  "new_api": "AutoModelForImageTextToText",
+  "old_patterns": [
+   "\\bAutoModelForVision2Seq\\b"
+  ],
+  "new_patterns": [
+   "\\bAutoModelForImageTextToText\\b"
+  ],
+  "old_status": "removed",
+  "question": "Which transformers Auto class should I use to load a vision-language model like SmolVLM that generates text from an image plus a prompt?",
+  "question_with_version": "In transformers v5, which Auto class should I use to load a vision-language model like SmolVLM that generates text from an image plus a prompt?",
+  "source_url": "https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md",
+  "notes": "SmolVLM model card still uses the old class.",
+  "hint_library": "Hugging Face transformers",
+  "hint_version": "5.0.0"
+ },
+ {
+  "id": "streamlit",
+  "library": "Streamlit",
+  "ecosystem": "python",
+  "version": "1.57.0",
+  "release_date": "2026-04-29",
+  "change": "removal",
+  "old_api": "_get_websocket_headers()",
+  "new_api": "st.context.headers",
+  "old_patterns": [
+   "\\b_get_websocket_headers\\b"
+  ],
+  "new_patterns": [
+   "\\bst\\.context\\.headers\\b"
+  ],
+  "old_status": "removed",
+  "question": "How can my Streamlit app read the HTTP request headers, such as an X-Forwarded-User header set by my auth proxy?",
+  "question_with_version": "In Streamlit 1.57+, how can my app read the HTTP request headers, such as an X-Forwarded-User header set by my auth proxy?",
+  "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2026",
+  "notes": "",
+  "hint_library": "Streamlit",
+  "hint_version": "1.57.0"
+ },
+ {
+  "id": "hugging-face-transformers-2",
+  "library": "Hugging Face transformers",
+  "ecosystem": "python",
+  "version": "5.0.0",
+  "release_date": "2026-01-26",
+  "change": "rename",
+  "old_api": "Trainer(..., tokenizer=tokenizer)",
+  "new_api": "Trainer(..., processing_class=tokenizer)",
+  "old_patterns": [
+   "Trainer\\((?:[^()]|\\([^()]*\\))*\\btokenizer\\s*="
+  ],
+  "new_patterns": [
+   "\\bprocessing_class\\s*="
+  ],
+  "old_status": "removed",
+  "question": "When fine-tuning with the Hugging Face Trainer, how do I pass my tokenizer so it is saved with checkpoints and pushed to the Hub with the model?",
+  "question_with_version": "In transformers v5, when fine-tuning with Trainer, how do I pass my tokenizer so it is saved with checkpoints and pushed to the Hub with the model?",
+  "source_url": "https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md",
+  "notes": "",
+  "hint_library": "Hugging Face transformers",
+  "hint_version": "5.0.0"
+ },
+ {
+  "id": "uv",
+  "library": "uv",
+  "ecosystem": "python",
+  "version": "0.11.0",
+  "release_date": "2026-03-23",
+  "change": "rename",
+  "old_api": "--native-tls / UV_NATIVE_TLS / native-tls = true",
+  "new_api": "--system-certs / UV_SYSTEM_CERTS / system-certs = true",
+  "old_patterns": [
+   "--native-tls\\b",
+   "\\bUV_NATIVE_TLS\\b",
+   "^\\s*native-tls\\s*="
+  ],
+  "new_patterns": [
+   "--system-certs\\b",
+   "\\bUV_SYSTEM_CERTS\\b",
+   "^\\s*system-certs\\s*="
+  ],
+  "old_status": "deprecated",
+  "question": "How do I tell uv to use my operating system's certificate store instead of its bundled root certificates?",
+  "question_with_version": "In uv 0.11+, how do I tell uv to use my operating system's certificate store instead of its bundled root certificates?",
+  "source_url": "https://github.com/astral-sh/uv/releases/tag/0.11.0",
+  "notes": "Needs multiline regex mode.",
+  "hint_library": "uv",
+  "hint_version": "0.11.0"
+ },
+ {
+  "id": "stripe-node-sdk",
+  "library": "Stripe Node SDK (stripe)",
+  "ecosystem": "js",
+  "version": "22.0.0",
+  "release_date": "2026-04-02",
+  "change": "signature",
+  "old_api": "require('stripe')(key) / Stripe(key) called as a function",
+  "new_api": "new Stripe(key)",
+  "old_patterns": [
+   "require\\(\\s*['\"]stripe['\"]\\s*\\)\\s*\\(",
+   "(?<!new )\\bStripe\\(\\s*(?:process\\.env|['\"`]sk_)"
+  ],
+  "new_patterns": [
+   "\\bnew\\s+Stripe\\s*\\(",
+   "\\bnew\\s*\\(\\s*require\\(\\s*['\"]stripe['\"]\\s*\\)\\s*\\)\\s*\\("
+  ],
+  "old_status": "removed",
+  "question": "How do I initialize the Stripe client in a CommonJS Node.js backend (using require) with my secret key from an environment variable?",
+  "question_with_version": "How do I initialize the Stripe client in a CommonJS Node.js backend (using require) with stripe-node v23?",
+  "source_url": "https://github.com/stripe/stripe-node/blob/master/CHANGELOG.md",
+  "notes": "Signal is an old-pattern hit; new Stripe() was always valid in ESM.",
+  "hint_library": "Stripe Node SDK",
+  "hint_version": "22.0.0"
+ },
+ {
+  "id": "typescript",
+  "library": "TypeScript",
+  "ecosystem": "js",
+  "version": "7.0",
+  "release_date": "2026-07-08",
+  "change": "rename",
+  "old_api": "import x from './x.json' assert { type: 'json' }",
+  "new_api": "import x from './x.json' with { type: 'json' }",
+  "old_patterns": [
+   "\\bassert\\s*\\{\\s*type\\s*:\\s*['\"]json['\"]",
+   "\\bassert\\s*:\\s*\\{\\s*type\\s*:\\s*['\"]json['\"]"
+  ],
+  "new_patterns": [
+   "\\bwith\\s*\\{\\s*type\\s*:\\s*['\"]json['\"]",
+   "\\bwith\\s*:\\s*\\{\\s*type\\s*:\\s*['\"]json['\"]"
+  ],
+  "old_status": "removed",
+  "question": "How do I import a JSON file as an ES module in TypeScript when module is set to nodenext?",
+  "question_with_version": "How do I import a JSON file as an ES module in TypeScript 7 when module is set to nodenext?",
+  "source_url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+  "notes": "Deprecated in TS 6.0, error in 7.0.",
+  "hint_library": "TypeScript",
+  "hint_version": "7.0"
+ },
+ {
+  "id": "pnpm",
+  "library": "pnpm",
+  "ecosystem": "js",
+  "version": "11.0",
+  "release_date": "2026-04-28",
+  "change": "rename",
+  "old_api": "onlyBuiltDependencies / neverBuiltDependencies",
+  "new_api": "allowBuilds",
+  "old_patterns": [
+   "\\bonlyBuiltDependencies\\b",
+   "\\bneverBuiltDependencies\\b"
+  ],
+  "new_patterns": [
+   "\\ballowBuilds\\b"
+  ],
+  "old_status": "removed",
+  "question": "What do I put in pnpm-workspace.yaml so that only esbuild and sharp are allowed to run their postinstall build scripts?",
+  "question_with_version": "What do I put in pnpm-workspace.yaml in pnpm 11 so that only esbuild and sharp are allowed to run their postinstall build scripts?",
+  "source_url": "https://pnpm.io/blog/releases/11.0",
+  "notes": "",
+  "hint_library": "pnpm",
+  "hint_version": "11.0"
+ },
+ {
+  "id": "firebase-js-sdk",
+  "library": "Firebase JS SDK (firebase/ai)",
+  "ecosystem": "js",
+  "version": "12.17.0",
+  "release_date": "2026-07-30",
+  "change": "rename",
+  "old_api": "VertexAIBackend",
+  "new_api": "AgentPlatformBackend",
+  "old_patterns": [
+   "\\bVertexAIBackend\\b",
+   "\\bgetVertexAI\\s*\\("
+  ],
+  "new_patterns": [
+   "\\bAgentPlatformBackend\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "In my web app using Firebase AI Logic, how do I initialize getAI so it uses the Vertex AI Gemini API backend instead of the Gemini Developer API?",
+  "question_with_version": "In my web app using Firebase AI Logic with the Firebase JS SDK v12 (12.17+), how do I initialize getAI so it uses the Vertex AI Gemini API backend instead of the Gemini Developer API?",
+  "source_url": "https://firebase.google.com/support/release-notes/js",
+  "notes": "",
+  "hint_library": "Firebase JS SDK",
+  "hint_version": "12.17.0"
+ },
+ {
+  "id": "better-auth",
+  "library": "Better Auth",
+  "ecosystem": "js",
+  "version": "1.7.0",
+  "release_date": "2026-08-17",
+  "change": "rename",
+  "old_api": "oidcProvider() from 'better-auth/plugins'",
+  "new_api": "oauthProvider() from '@better-auth/oauth-provider'",
+  "old_patterns": [
+   "\\boidcProvider\\b",
+   "\\boidcClient\\b"
+  ],
+  "new_patterns": [
+   "\\boauthProvider\\b",
+   "@better-auth/oauth-provider"
+  ],
+  "old_status": "removed",
+  "question": "How do I turn my Better Auth server into an OAuth 2.0 / OpenID Connect provider so other apps can offer 'Sign in with MyApp'?",
+  "question_with_version": "How do I turn my Better Auth 1.7 server into an OAuth 2.0 / OpenID Connect provider so other apps can offer 'Sign in with MyApp'?",
+  "source_url": "https://better-auth.com/blog/1-7",
+  "notes": "",
+  "hint_library": "Better Auth",
+  "hint_version": "1.7.0"
+ },
+ {
+  "id": "typescript-2",
+  "library": "TypeScript",
+  "ecosystem": "js",
+  "version": "7.0",
+  "release_date": "2026-07-08",
+  "change": "removal",
+  "old_api": "\"moduleResolution\": \"node\"",
+  "new_api": "\"moduleResolution\": \"nodenext\" or \"bundler\"",
+  "old_patterns": [
+   "moduleResolution['\"]?\\s*:\\s*['\"](?:[Nn]ode|[Nn]ode10)['\"]",
+   "--moduleResolution[ =](?:node|node10)\\b"
+  ],
+  "new_patterns": [
+   "moduleResolution['\"]?\\s*:\\s*['\"](?:[Nn]ode[Nn]ext|[Nn]ode16|[Bb]undler)['\"]",
+   "--moduleResolution[ =](?:nodenext|node16|bundler)\\b"
+  ],
+  "old_status": "removed",
+  "question": "What should I set moduleResolution to in tsconfig.json for a Node.js backend that I compile with tsc?",
+  "question_with_version": "What should I set moduleResolution to in tsconfig.json for a Node.js backend that I compile with TypeScript 7's tsc?",
+  "source_url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+  "notes": "Backup TS item.",
+  "hint_library": "TypeScript",
+  "hint_version": "7.0"
+ },
+ {
+  "id": "firebase-js-sdk-2",
+  "library": "Firebase JS SDK (firebase/ai)",
+  "ecosystem": "js",
+  "version": "12.18.0",
+  "release_date": "2026-08-19",
+  "change": "removal",
+  "old_api": "getImagenModel(...).generateImages(prompt)",
+  "new_api": "getGenerativeModel(..., responseModalities: [ResponseModality.IMAGE]).generateContent(prompt)",
+  "old_patterns": [
+   "\\bgetImagenModel\\s*\\(",
+   "\\.generateImages\\s*\\("
+  ],
+  "new_patterns": [
+   "\\bresponseModalities\\b",
+   "\\bResponseModality\\.IMAGE\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I generate an image from a text prompt with Firebase AI Logic in a web app?",
+  "question_with_version": "How do I generate an image from a text prompt with Firebase AI Logic in a web app using the Firebase JS SDK v12 (12.18+)?",
+  "source_url": "https://firebase.google.com/support/release-notes/js",
+  "notes": "Imagen models shut down 2026-08-17.",
+  "hint_library": "Firebase JS SDK",
+  "hint_version": "12.18.0"
+ },
+ {
+  "id": "tailwind-css",
+  "library": "Tailwind CSS",
+  "ecosystem": "js",
+  "version": "4.3.0",
+  "release_date": "2026-05-08",
+  "change": "rename",
+  "old_api": "start-* / end-*",
+  "new_api": "inset-s-* / inset-e-*",
+  "old_patterns": [
+   "(?<![\\w-])start-(?:0|px|full|auto|\\d+(?:\\.\\d+)?|\\[)",
+   "(?<![\\w-])end-(?:0|px|full|auto|\\d+(?:\\.\\d+)?|\\[)"
+  ],
+  "new_patterns": [
+   "\\binset-s-(?:0|px|full|auto|\\d+(?:\\.\\d+)?|\\[)",
+   "\\binset-e-(?:0|px|full|auto|\\d+(?:\\.\\d+)?|\\[)"
+  ],
+  "old_status": "deprecated",
+  "question": "In Tailwind, what single utility class pins an absolutely positioned element to the inline-start edge (left in LTR, right in RTL) with zero offset?",
+  "question_with_version": "In Tailwind CSS v4 (4.3+), what single utility class pins an absolutely positioned element to the inline-start edge (left in LTR, right in RTL) with zero offset?",
+  "source_url": "https://tailwindcss.com/blog/tailwindcss-v4-3",
+  "notes": "Medium popularity.",
+  "hint_library": "Tailwind CSS",
+  "hint_version": "4.3.0"
+ },
+ {
+  "id": "turborepo",
+  "library": "Turborepo",
+  "ecosystem": "js",
+  "version": "2.9.0",
+  "release_date": "2026-03-30",
+  "change": "rename",
+  "old_api": "npx turbo-ignore <workspace>",
+  "new_api": "turbo query affected --packages <workspace>",
+  "old_patterns": [
+   "\\bturbo-ignore\\b"
+  ],
+  "new_patterns": [
+   "\\bturbo\\s+query\\s+affected\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "In a Turborepo monorepo deployed on Vercel, what command should I put in the Ignored Build Step so the web app only builds when it or its dependencies changed?",
+  "question_with_version": "In a Turborepo 2.9+ (v2) monorepo deployed on Vercel, what command should I put in the Ignored Build Step so the web app only builds when it or its dependencies changed?",
+  "source_url": "https://turborepo.dev/docs/reference/turbo-ignore",
+  "notes": "",
+  "hint_library": "Turborepo",
+  "hint_version": "2.9.0"
+ },
+ {
+  "id": "vite",
+  "library": "Vite",
+  "ecosystem": "js",
+  "version": "8.0.0",
+  "release_date": "2026-03-12",
+  "change": "rename",
+  "old_api": "esbuild: { jsxInject }",
+  "new_api": "oxc: { jsxInject }",
+  "old_patterns": [
+   "\\besbuild\\s*:\\s*\\{[^}]*\\bjsxInject\\b",
+   "\\besbuild\\.jsxInject\\b"
+  ],
+  "new_patterns": [
+   "\\boxc\\s*:\\s*\\{[^}]*\\bjsxInject\\b",
+   "\\boxc\\.jsxInject\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I make Vite automatically inject `import React from 'react'` into every JSX file using Vite's built-in config option (no plugin)?",
+  "question_with_version": "How do I make Vite 8 automatically inject `import React from 'react'` into every JSX file using Vite's built-in config option (no plugin)?",
+  "source_url": "https://vite.dev/guide/migration",
+  "notes": "",
+  "hint_library": "Vite",
+  "hint_version": "8.0.0"
+ },
+ {
+  "id": "playwright",
+  "library": "Playwright",
+  "ecosystem": "js",
+  "version": "1.58.0",
+  "release_date": "2026-01-23",
+  "change": "removal",
+  "old_api": "launch({ devtools: true })",
+  "new_api": "launch({ args: ['--auto-open-devtools-for-tabs'] })",
+  "old_patterns": [
+   "\\bdevtools\\s*:\\s*true\\b",
+   "\\bdevtools\\s*=\\s*True\\b"
+  ],
+  "new_patterns": [
+   "--auto-open-devtools-for-tabs"
+  ],
+  "old_status": "removed",
+  "question": "How do I launch Chromium with Playwright so Chrome DevTools opens automatically for each tab?",
+  "question_with_version": "How do I launch Chromium with Playwright 1.58 or newer so Chrome DevTools opens automatically for each tab?",
+  "source_url": "https://playwright.dev/docs/release-notes",
+  "notes": "",
+  "hint_library": "Playwright",
+  "hint_version": "1.58.0"
+ },
+ {
+  "id": "sveltekit",
+  "library": "SvelteKit",
+  "ecosystem": "js",
+  "version": "3.0.0",
+  "release_date": "2026-10-01",
+  "change": "removal",
+  "old_api": "import { page } from '$app/stores'",
+  "new_api": "import { page } from '$app/state'",
+  "old_patterns": [
+   "\\$app/stores"
+  ],
+  "new_patterns": [
+   "\\$app/state['\"]"
+  ],
+  "old_status": "removed",
+  "question": "How do I get the current URL pathname inside a SvelteKit component?",
+  "question_with_version": "How do I get the current URL pathname inside a SvelteKit 3 component?",
+  "source_url": "https://svelte.dev/docs/kit/migrating-to-sveltekit-3",
+  "notes": "$app/state existed since 2.12.",
+  "hint_library": "SvelteKit",
+  "hint_version": "3.0.0"
+ },
+ {
+  "id": "tanstack-table",
+  "library": "TanStack Table",
+  "ecosystem": "js",
+  "version": "9.0.0",
+  "release_date": "2026-08-04",
+  "change": "rename",
+  "old_api": "useReactTable + getSortedRowModel()",
+  "new_api": "useTable + tableFeatures({ rowSortingFeature, sortedRowModel: createSortedRowModel() })",
+  "old_patterns": [
+   "\\buseReactTable\\b",
+   "\\bgetSortedRowModel\\b",
+   "from\\s+['\"]react-table['\"]",
+   "\\buseSortBy\\b"
+  ],
+  "new_patterns": [
+   "\\bcreateSortedRowModel\\b",
+   "\\browSortingFeature\\b",
+   "\\btableFeatures\\s*\\("
+  ],
+  "old_status": "removed",
+  "question": "How do I add client-side column sorting to a TanStack Table in React?",
+  "question_with_version": "How do I add client-side column sorting with TanStack Table v9 in React?",
+  "source_url": "https://tanstack.com/table/latest/docs/framework/react/guide/migrating",
+  "notes": " Old patterns also cover react-table v7 (useSortBy).",
+  "hint_library": "TanStack Table",
+  "hint_version": "9.0.0"
+ },
+ {
+  "id": "expo-sdk",
+  "library": "Expo SDK (expo-audio)",
+  "ecosystem": "js",
+  "version": "SDK 55",
+  "release_date": "2026-02-25",
+  "change": "removal",
+  "old_api": "expo-av Audio.Sound.createAsync",
+  "new_api": "expo-audio useAudioPlayer",
+  "old_patterns": [
+   "['\"]expo-av['\"]",
+   "\\bAudio\\.Sound\\.createAsync\\b"
+  ],
+  "new_patterns": [
+   "['\"]expo-audio['\"]",
+   "\\buseAudioPlayer\\b",
+   "\\bcreateAudioPlayer\\b"
+  ],
+  "old_status": "removed",
+  "question": "How do I play a short sound effect from a bundled mp3 file in an Expo app?",
+  "question_with_version": "How do I play a short sound effect from a bundled mp3 file in an Expo SDK 57 app?",
+  "source_url": "https://expo.dev/blog/upgrading-to-sdk-55",
+  "notes": "",
+  "hint_library": "Expo SDK",
+  "hint_version": "55"
+ },
+ {
+  "id": "expo-router",
+  "library": "Expo Router",
+  "ecosystem": "js",
+  "version": "SDK 56",
+  "release_date": "2026-05-21",
+  "change": "rename",
+  "old_api": "ThemeProvider etc. from '@react-navigation/native'",
+  "new_api": "from 'expo-router/react-navigation'",
+  "old_patterns": [
+   "['\"]@react-navigation/native['\"]"
+  ],
+  "new_patterns": [
+   "['\"]expo-router/react-navigation['\"]",
+   "import\\s*\\{[^}]*\\b(?:ThemeProvider|DarkTheme|DefaultTheme)\\b[^}]*\\}\\s*from\\s*['\"]expo-router['\"]"
+  ],
+  "old_status": "removed",
+  "question": "In an Expo Router app, how do I apply React Navigation's DarkTheme to the headers and tab bar when the device is in dark mode?",
+  "question_with_version": "In an Expo SDK 57 Expo Router app, how do I apply React Navigation's DarkTheme to the headers and tab bar when the device is in dark mode?",
+  "source_url": "https://docs.expo.dev/router/migrate/sdk-55-to-56/",
+  "notes": " New patterns also cover importing ThemeProvider/DarkTheme from the 'expo-router' root, as the official SDK 56+ docs do (found in the docs check).",
+  "hint_library": "Expo Router",
+  "hint_version": "56"
+ },
+ {
+  "id": "react-native",
+  "library": "React Native",
+  "ecosystem": "js",
+  "version": "0.87.0",
+  "release_date": "2026-08-11",
+  "change": "removal",
+  "old_api": "InteractionManager.runAfterInteractions",
+  "new_api": "requestIdleCallback",
+  "old_patterns": [
+   "\\bInteractionManager\\b",
+   "\\brunAfterInteractions\\b"
+  ],
+  "new_patterns": [
+   "\\brequestIdleCallback\\s*\\("
+  ],
+  "old_status": "removed",
+  "question": "In React Native, how do I defer heavy JavaScript work so it doesn't block animations or touch handling?",
+  "question_with_version": "In React Native 0.87, how do I defer heavy JavaScript work so it doesn't block animations or touch handling?",
+  "source_url": "https://github.com/facebook/react-native/blob/main/CHANGELOG.md",
+  "notes": "",
+  "hint_library": "React Native",
+  "hint_version": "0.87.0"
+ },
+ {
+  "id": "angular",
+  "library": "Angular",
+  "ecosystem": "js",
+  "version": "22.0.0",
+  "release_date": "2026-06-03",
+  "change": "rename",
+  "old_api": "reportProgress: true",
+  "new_api": "reportUploadProgress: true (+ withXhr())",
+  "old_patterns": [
+   "\\breportProgress\\s*:"
+  ],
+  "new_patterns": [
+   "\\breportUploadProgress\\b",
+   "\\breportDownloadProgress\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I show a file upload progress bar with Angular's HttpClient?",
+  "question_with_version": "How do I show a file upload progress bar with Angular 22's HttpClient?",
+  "source_url": "https://github.com/angular/angular/blob/main/CHANGELOG.md",
+  "notes": "",
+  "hint_library": "Angular",
+  "hint_version": "22.0.0"
+ },
+ {
+  "id": "sveltekit-2",
+  "library": "SvelteKit",
+  "ecosystem": "js",
+  "version": "3.0.0",
+  "release_date": "2026-10-01",
+  "change": "rename",
+  "old_api": "$env/static/private",
+  "new_api": "defineEnvVars + $app/env/private",
+  "old_patterns": [
+   "\\$env/(static|dynamic)/private"
+  ],
+  "new_patterns": [
+   "\\$app/env/private",
+   "\\bdefineEnvVars\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I read a secret API key from .env in SvelteKit server code without leaking it to the browser?",
+  "question_with_version": "How do I read a secret API key from .env in SvelteKit 3 server code without leaking it to the browser?",
+  "source_url": "https://svelte.dev/docs/kit/environment-variables",
+  "notes": "",
+  "hint_library": "SvelteKit",
+  "hint_version": "3.0.0"
+ },
+ {
+  "id": "astro",
+  "library": "Astro",
+  "ecosystem": "js",
+  "version": "6.0.0",
+  "release_date": "2026-03-10",
+  "change": "rename",
+  "old_api": "import { z } from 'astro:content'",
+  "new_api": "import { z } from 'astro/zod'",
+  "old_patterns": [
+   "import\\s*\\{[^}]*\\bz\\b[^}]*\\}\\s*from\\s*['\"]astro:(content|schema)['\"]"
+  ],
+  "new_patterns": [
+   "import\\s*\\{[^}]*\\bz\\b[^}]*\\}\\s*from\\s*['\"]astro/zod['\"]"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I define a Zod schema for a blog content collection in Astro?",
+  "question_with_version": "How do I define a Zod schema for a blog content collection in Astro 7?",
+  "source_url": "https://docs.astro.build/en/guides/upgrade-to/v6/",
+  "notes": "",
+  "hint_library": "Astro",
+  "hint_version": "6.0.0"
+ },
+ {
+  "id": "astro-2",
+  "library": "Astro (@astrojs/cloudflare)",
+  "ecosystem": "js",
+  "version": "Astro 6 / adapter 13",
+  "release_date": "2026-03-10",
+  "change": "removal",
+  "old_api": "Astro.locals.runtime.env",
+  "new_api": "import { env } from 'cloudflare:workers'",
+  "old_patterns": [
+   "\\blocals\\.runtime\\b"
+  ],
+  "new_patterns": [
+   "['\"]cloudflare:workers['\"]"
+  ],
+  "old_status": "removed",
+  "question": "How do I read a Cloudflare KV binding inside an Astro page deployed with the Cloudflare adapter?",
+  "question_with_version": "How do I read a Cloudflare KV binding inside an Astro 7 page deployed with the Cloudflare adapter?",
+  "source_url": "https://docs.astro.build/en/guides/integrations-guide/cloudflare/",
+  "notes": "",
+  "hint_library": "Astro",
+  "hint_version": "6"
+ },
+ {
+  "id": "sveltekit-3",
+  "library": "SvelteKit",
+  "ecosystem": "js",
+  "version": "3.0.0",
+  "release_date": "2026-10-01",
+  "change": "rename",
+  "old_api": "$lib alias",
+  "new_api": "#lib alias via package.json imports",
+  "old_patterns": [
+   "['\"]\\$lib(/[^'\"]*)?['\"]"
+  ],
+  "new_patterns": [
+   "['\"]#lib(/[^'\"]*)?['\"]"
+  ],
+  "old_status": "removed",
+  "question": "What's the import alias for src/lib in SvelteKit, and how do I import a helper from src/lib/utils.ts in a route?",
+  "question_with_version": "What's the import alias for src/lib in SvelteKit 3, and how do I import a helper from src/lib/utils.ts in a route?",
+  "source_url": "https://svelte.dev/docs/kit/migrating-to-sveltekit-3",
+  "notes": "",
+  "hint_library": "SvelteKit",
+  "hint_version": "3.0.0"
+ },
+ {
+  "id": "angular-2",
+  "library": "Angular",
+  "ecosystem": "js",
+  "version": "21.2.0",
+  "release_date": "2026-02-25",
+  "change": "rename",
+  "old_api": "ChangeDetectionStrategy.Default",
+  "new_api": "ChangeDetectionStrategy.Eager",
+  "old_patterns": [
+   "ChangeDetectionStrategy\\.Default\\b"
+  ],
+  "new_patterns": [
+   "ChangeDetectionStrategy\\.Eager\\b"
+  ],
+  "old_status": "deprecated",
+  "question": "How do I make an Angular component opt out of OnPush so it's checked on every change detection run?",
+  "question_with_version": "How do I make an Angular 22 component opt out of OnPush so it's checked on every change detection run?",
+  "source_url": "https://angular.dev/api/core/ChangeDetectionStrategy",
+  "notes": "",
+  "hint_library": "Angular",
+  "hint_version": "21.2.0"
+ }
+]

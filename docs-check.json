@@ -1,0 +1,297 @@
+[
+ {
+  "id": "vercel-ai-sdk",
+  "docs_url": "https://ai-sdk.dev/docs/getting-started/nextjs-app-router",
+  "verdict": "current",
+  "evidence": "stream: toUIMessageStream({ stream: result.stream }),"
+ },
+ {
+  "id": "vercel-ai-sdk-2",
+  "docs_url": "https://ai-sdk.dev/docs/ai-sdk-core/generating-text",
+  "verdict": "current",
+  "evidence": "onEnd({ text, finishReason, usage, responseMessages, steps, totalUsage }) {"
+ },
+ {
+  "id": "vercel-ai-sdk-3",
+  "docs_url": "https://ai-sdk.dev/docs/ai-sdk-core/generating-text",
+  "verdict": "current",
+  "evidence": "for await (const part of result.stream) {"
+ },
+ {
+  "id": "mcp-python-sdk",
+  "docs_url": "https://py.sdk.modelcontextprotocol.io/get-started/first-steps/",
+  "verdict": "current",
+  "evidence": "mcp = MCPServer(\"Demo\")"
+ },
+ {
+  "id": "mcp-python-sdk-2",
+  "docs_url": "https://py.sdk.modelcontextprotocol.io/client/transports/",
+  "verdict": "current",
+  "evidence": "transport = streamable_http_client(\"http://localhost:8000/mcp\", http_client=http_client)"
+ },
+ {
+  "id": "mcp-typescript-sdk",
+  "docs_url": "https://ts.sdk.modelcontextprotocol.io/v2/servers/tools",
+  "verdict": "current",
+  "evidence": "server.registerTool("
+ },
+ {
+  "id": "mcp-typescript-sdk-2",
+  "docs_url": "https://ts.sdk.modelcontextprotocol.io/v2/serving/http",
+  "verdict": "neither",
+  "evidence": "import { createMcpHandler, McpServer } from '@modelcontextprotocol/server';",
+  "notes": "v2 teaches createMcpHandler; added to new patterns."
+ },
+ {
+  "id": "pydantic-ai",
+  "docs_url": "https://pydantic.dev/docs/ai/mcp/client/",
+  "verdict": "current",
+  "evidence": "toolset = MCPToolset(StdioTransport(command='python', args=['mcp_server.py']))"
+ },
+ {
+  "id": "pydantic-ai-2",
+  "docs_url": "https://pydantic.dev/docs/ai/models/compatible-apis/",
+  "verdict": "current",
+  "evidence": "model = OpenAIChatModel('model_name', provider=OpenAIProvider(base_url=...))"
+ },
+ {
+  "id": "anthropic-python-sdk",
+  "docs_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+  "verdict": "current",
+  "evidence": "output_config={\"format\": {\"type\": \"json_schema\", \"schema\": {...}}},"
+ },
+ {
+  "id": "openai-node-sdk",
+  "docs_url": "https://developers.openai.com/api/docs/guides/conversation-state",
+  "verdict": "current",
+  "evidence": "const conversation = await client.conversations.create();"
+ },
+ {
+  "id": "google-gen-ai-python-sdk",
+  "docs_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+  "verdict": "neither",
+  "evidence": "interaction = client.interactions.create(model=\"gemini-nano-banana-2.1\", input=\"...\")",
+  "notes": "Gemini API guide uses the Interactions API; added interactions.create to new patterns. The SDK's own site (googleapis.github.io/python-genai) still shows generate_images."
+ },
+ {
+  "id": "langchain",
+  "docs_url": "https://docs.langchain.com/oss/python/langchain/mcp",
+  "verdict": "current",
+  "evidence": "async with MCPAdapter(\"https://example.com/mcp\") as adapter:"
+ },
+ {
+  "id": "langchain-js",
+  "docs_url": "https://docs.langchain.com/oss/javascript/langchain/mcp",
+  "verdict": "current",
+  "evidence": "const tools = await adapter.listTools();"
+ },
+ {
+  "id": "mastra",
+  "docs_url": "https://mastra.ai/docs/server/request-context",
+  "verdict": "current",
+  "evidence": "import { RequestContext } from '@mastra/core/request-context'"
+ },
+ {
+  "id": "mastra-2",
+  "docs_url": "https://mastra.ai/reference/core/listAgents",
+  "verdict": "current",
+  "evidence": "mastra.listAgents()"
+ },
+ {
+  "id": "django",
+  "docs_url": "https://docs.djangoproject.com/en/6.1/topics/email/",
+  "verdict": "current",
+  "evidence": "MAILERS = {\"default\": {\"BACKEND\": \"django.core.mail.backends.smtp.EmailBackend\", ..."
+ },
+ {
+  "id": "polars",
+  "docs_url": "https://docs.pola.rs/user-guide/transformations/unpivot/",
+  "verdict": "current",
+  "evidence": "out = df.unpivot([\"C\", \"D\"], index=[\"A\", \"B\"])"
+ },
+ {
+  "id": "scikit-learn",
+  "docs_url": "https://scikit-learn.org/stable/modules/svm.html#scores-and-probabilities",
+  "verdict": "neither",
+  "evidence": "(prose) When the constructor option probability is set to True, class membership probability estimates ... are enabled.",
+  "notes": "No code example uses either API; the prose still teaches the old way. Kept, because the rule looks at code examples only."
+ },
+ {
+  "id": "pytorch",
+  "docs_url": "https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html",
+  "verdict": "current",
+  "evidence": "activities += [ProfilerActivity.CUDA]"
+ },
+ {
+  "id": "starlette",
+  "docs_url": "https://fastapi.tiangolo.com/advanced/templates/",
+  "verdict": "current",
+  "evidence": "return templates.TemplateResponse(request=request, name=\"item.html\", context={\"id\": id})"
+ },
+ {
+  "id": "hugging-face-transformers",
+  "docs_url": "https://huggingface.co/docs/transformers/en/model_doc/smolvlm",
+  "verdict": "current",
+  "evidence": "model = AutoModelForImageTextToText.from_pretrained(\"HuggingFaceTB/SmolVLM2-2.2B-Instruct\", ...)"
+ },
+ {
+  "id": "streamlit",
+  "docs_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.context",
+  "verdict": "current",
+  "evidence": "st.context.headers[\"host\"]"
+ },
+ {
+  "id": "hugging-face-transformers-2",
+  "docs_url": "https://huggingface.co/docs/transformers/en/training",
+  "verdict": "current",
+  "evidence": "trainer = Trainer(model=model, args=training_args, ..., processing_class=tokenizer, ...)"
+ },
+ {
+  "id": "uv",
+  "docs_url": "https://docs.astral.sh/uv/concepts/authentication/certificates/",
+  "verdict": "current",
+  "evidence": "To use system certificates, pass the `--system-certs` flag, set `UV_SYSTEM_CERTS` ...",
+  "notes": "New API only in inline code; old API absent either way."
+ },
+ {
+  "id": "stripe-node-sdk",
+  "docs_url": "https://docs.stripe.com/sdks/server-side?lang=node",
+  "verdict": "stale",
+  "evidence": "const stripe = require('stripe')('sk_test_...');",
+  "notes": "Every Node init block calls require('stripe')(key). Excluded from the cleaned set."
+ },
+ {
+  "id": "typescript",
+  "docs_url": "https://www.typescriptlang.org/docs/handbook/modules/reference.html",
+  "verdict": "neither",
+  "evidence": "(table) nodenext | JSON imports: needs type \"json\"",
+  "notes": "No official non-release-notes page has a code example with import attributes."
+ },
+ {
+  "id": "pnpm",
+  "docs_url": "https://pnpm.io/settings/build#allowbuilds",
+  "verdict": "stale",
+  "evidence": "Before: block with onlyBuiltDependencies / neverBuiltDependencies",
+  "notes": "Literal rule: one code example (a 'Before:' migration snippet on the settings page) uses the old API, next to an 'After:' block with allowBuilds. Excluded under the rule as written, though the page teaches allowBuilds."
+ },
+ {
+  "id": "firebase-js-sdk",
+  "docs_url": "https://firebase.google.com/docs/ai-logic/get-started?api=vertex",
+  "verdict": "current",
+  "evidence": "const ai = getAI(firebaseApp, { backend: new AgentPlatformBackend() });"
+ },
+ {
+  "id": "better-auth",
+  "docs_url": "https://better-auth.com/docs/plugins/oauth-provider",
+  "verdict": "current",
+  "evidence": "import { oauthProvider } from \"@better-auth/oauth-provider\";"
+ },
+ {
+  "id": "typescript-2",
+  "docs_url": "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+  "verdict": "current",
+  "evidence": "\"module\": \"nodenext\", // Implied: \"moduleResolution\": \"nodenext\""
+ },
+ {
+  "id": "firebase-js-sdk-2",
+  "docs_url": "https://firebase.google.com/docs/ai-logic/generate-images-gemini",
+  "verdict": "current",
+  "evidence": "responseModalities: [ResponseModality.IMAGE]"
+ },
+ {
+  "id": "tailwind-css",
+  "docs_url": "https://tailwindcss.com/docs/top-right-bottom-left",
+  "verdict": "current",
+  "evidence": "<div class=\"absolute inset-s-0 top-0 size-14 ...\"></div>"
+ },
+ {
+  "id": "turborepo",
+  "docs_url": "https://turborepo.dev/docs/guides/skipping-tasks",
+  "verdict": "current",
+  "evidence": "affected=$(turbo query affected --packages web)",
+  "notes": "turbo-ignore only in a prose 'Legacy' section with no code block."
+ },
+ {
+  "id": "vite",
+  "docs_url": "https://vite.dev/guide/features#jsx",
+  "verdict": "current",
+  "evidence": "oxc: { jsxInject: `import React from 'react'`, },"
+ },
+ {
+  "id": "playwright",
+  "docs_url": "https://playwright.dev/docs/api/class-browsertype#browser-type-launch",
+  "verdict": "neither",
+  "evidence": "const browser = await chromium.launch({ ignoreDefaultArgs: ['--mute-audio'] });",
+  "notes": "devtools option no longer documented; args described in prose only."
+ },
+ {
+  "id": "sveltekit",
+  "docs_url": "https://svelte.dev/docs/kit/$app-state",
+  "verdict": "current",
+  "evidence": "import { page } from '$app/state';"
+ },
+ {
+  "id": "tanstack-table",
+  "docs_url": "https://tanstack.com/table/latest/docs/framework/react/guide/sorting",
+  "verdict": "current",
+  "evidence": "sortedRowModel: createSortedRowModel(),"
+ },
+ {
+  "id": "expo-sdk",
+  "docs_url": "https://docs.expo.dev/versions/latest/sdk/audio/",
+  "verdict": "current",
+  "evidence": "const player = useAudioPlayer(audioSource);"
+ },
+ {
+  "id": "expo-router",
+  "docs_url": "https://docs.expo.dev/router/advanced/native-tabs/",
+  "verdict": "current",
+  "evidence": "import { ThemeProvider, DarkTheme, DefaultTheme } from 'expo-router';",
+  "notes": "Official SDK 56+ docs import from the expo-router root; added to new patterns."
+ },
+ {
+  "id": "react-native",
+  "docs_url": "https://reactnative.dev/docs/performance",
+  "verdict": "neither",
+  "evidence": "requestAnimationFrame(() => { this.doExpensiveAction(); });",
+  "notes": "/docs/interactionmanager is 404; requestIdleCallback only in prose."
+ },
+ {
+  "id": "angular",
+  "docs_url": "https://angular.dev/guide/http/making-requests",
+  "verdict": "current",
+  "evidence": "http.get('/api/download', { reportDownloadProgress: true, observe: 'events' })"
+ },
+ {
+  "id": "sveltekit-2",
+  "docs_url": "https://svelte.dev/docs/kit/environment-variables",
+  "verdict": "current",
+  "evidence": "import { API_KEY } from '$app/env/private';"
+ },
+ {
+  "id": "astro",
+  "docs_url": "https://docs.astro.build/en/guides/content-collections/",
+  "verdict": "current",
+  "evidence": "import { z } from 'astro/zod';"
+ },
+ {
+  "id": "astro-2",
+  "docs_url": "https://docs.astro.build/en/guides/integrations-guide/cloudflare/",
+  "verdict": "stale",
+  "evidence": "Astro.locals.runtime in deleted diff lines (upgrade section)",
+  "notes": "Literal rule: code blocks in the page's upgrade section use the old API (as deleted diff lines); the teaching section uses cloudflare:workers. Excluded under the rule as written, same as pnpm."
+ },
+ {
+  "id": "sveltekit-3",
+  "docs_url": "https://svelte.dev/docs/kit/$lib",
+  "verdict": "current",
+  "evidence": "import Component from '#lib/Component.svelte';"
+ },
+ {
+  "id": "angular-2",
+  "docs_url": "https://angular.dev/guide/components/advanced-configuration",
+  "verdict": "neither",
+  "evidence": "(prose) ChangeDetectionStrategy.Eager / Default is an optional mode.",
+  "notes": "API reference page would be current."
+ }
+]
